@@ -13,6 +13,8 @@ public class SimpleFileDB {
 
         if !manager.fileExists(atPath: baseURL.path) {
             try? manager.createDirectory(at: baseURL, withIntermediateDirectories: true)
+        } else {
+            print("Directory already exists at \(baseURL.path)")
         }
     }
 
@@ -51,4 +53,10 @@ public class SimpleFileDB {
         let fileURL = baseURL.appendingPathComponent(named)
         return fileURL.path
     }
+    
+    public func clearPath() {
+        print("deleting \(self.baseURL.path)")
+        try? FileManager.default.removeItem(at: self.baseURL)
+    }
+    
 }
